@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Katherine Liu - Environmental + Interior Design Portfolio</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); color: #2c3e50; line-height: 1.6; }
+.header { text-align: center; padding: 60px 20px 40px; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+.profile-pic { width: 160px; height: 160px; border-radius: 50%; margin: 0 auto 20px; border: 5px solid #3498db; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+.profile-pic img { width: 100%; height: 100%; object-fit: cover; }
+h1 { font-size: 42px; color: #1a252f; margin-bottom: 10px; font-weight: 700; }
+.contact-info { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin-top: 15px; font-size: 15px; color: #555; }
+.contact-info a { color: #3498db; text-decoration: none; }
+.nav-dots { position: fixed; right: 30px; top: 50%; transform: translateY(-50%); z-index: 1000; }
+.nav-dot { width: 12px; height: 12px; border-radius: 50%; background: #bdc3c7; margin: 15px 0; cursor: pointer; transition: all 0.3s; }
+.nav-dot.active { background: #3498db; transform: scale(1.4); }
+.checkpoint-container { max-width: 960px; margin: 0 auto; padding: 40px 20px; }
+.checkpoint { background: white; border-radius: 15px; padding: 40px; margin-bottom: 40px; box-shadow: 0 5px 25px rgba(0,0,0,0.1); opacity: 0; transform: translateY(30px); animation: fadeInUp 0.7s forwards; }
+@keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+.checkpoint h2 { color: #2c3e50; font-size: 30px; margin-bottom: 25px; padding-bottom: 12px; border-bottom: 4px solid #3498db; display: flex; align-items: center; gap: 12px; }
+.icon { font-size: 34px; }
+.item { margin-bottom: 28px; padding: 22px; background: #f8f9fa; border-radius: 12px; border-left: 5px solid #3498db; }
+.item h3 { color: #2c3e50; font-size: 21px; margin-bottom: 8px; }
+.subtitle { color: #7f8c8d; font-size: 16px; margin-bottom: 6px; }
+.date { color: #95a5a6; font-size: 14px; font-style: italic; margin-bottom: 10px; }
+.item ul { margin-top: 12px; padding-left: 5px; list-style: none; }
+.item li { padding-left: 20px; position: relative; margin-bottom: 8px; }
+.item li::before { content: "▹"; position: absolute; left: 0; color: #3498db; font-weight: bold; }
+.item a { color: #3498db; font-weight: 600; text-decoration: underline; transition: all 0.2s; }
+.item a:hover { color: #2c3e50; text-decoration: none; background: rgba(52, 152, 219, 0.1); padding: 2px 4px; border-radius: 4px; }
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 25px; }
+.skill-category { background: #f8f9fa; padding: 25px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); transition: transform 0.2s; }
+.skill-category:hover { transform: translateY(-5px); }
+.skill-category h4 { color: #2c3e50; margin-bottom: 18px; font-size: 20px; border-bottom: 2px solid #3498db; padding-bottom: 8px; }
+.skill-item { margin-bottom: 18px; }
+.skill-name { display: flex; justify-content: space-between; font-weight: 600; margin-bottom: 6px; font-size: 15px; color: #2c3e50; }
+.skill-bar { height: 10px; background: #e0e0e0; border-radius: 5px; overflow: hidden; }
+.skill-progress { height: 100%; background: linear-gradient(90deg, #3498db, #2ecc71); border-radius: 5px; transition: width 1.2s ease-in-out; }
+.cert-list { list-style: none; padding-left: 0; }
+.cert-list li { margin-bottom: 12px; font-size: 15px; position: relative; padding-left: 28px; }
+.cert-list li::before { content: "✓"; position: absolute; left: 0; color: #2ecc71; font-weight: bold; font-size: 18px; }
+.cert-list li.in-progress::before { content: "⏳"; color: #f39c12; }
+.awards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
+.award-badge { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 24px; border-radius: 12px; text-align: center; font-weight: 600; font-size: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.2s; }
+.award-badge:hover { transform: translateY(-5px); }
+.award-badge .title { font-size: 16px; margin-bottom: 8px; }
+.award-badge .desc { font-size: 14px; opacity: 0.9; }
+.extracurricular-list { list-style: none; padding-left: 0; }
+.extracurricular-list li { margin-bottom: 20px; padding-left: 40px; position: relative; }
+.extracurricular-list li::before { content: "🌟"; position: absolute; left: 0; font-size: 20px; color: #3498db; top: 2px; }
+.extracurricular-list .title { font-weight: 600; font-size: 17px; margin-bottom: 4px; }
+.extracurricular-list .subtitle { color: #7f8c8d; font-size: 15px; margin-bottom: 4px; }
+.extracurricular-list .date { color: #95a5a6; font-size: 14px; font-style: italic; }
+footer { background: #2c3e50; color: white; text-align: center; padding: 50px 20px; }
+.tagline { font-style: italic; color: #bdc3c7; margin-top: 15px; font-size: 17px; }
+@media (max-width: 768px) {
+    h1 { font-size: 34px; }
+    .checkpoint { padding: 25px; }
+    .nav-dots { display: none; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .awards-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+    <div class="profile-pic">
+        <img src="profilepic.webp" alt="Katherine Liu">
+    </div>
+    <h1>Katherine Liu</h1>
+    <div class="contact-info">
+        <span>📍 Honolulu, HI</span>
+        <span>📞 (808) 492-0151</span>
+        <span>✉️ 88katherine.liu@gmail.com</span>
+        <span>💼 <a href="https://www.linkedin.com/in/88-katherine-liu/" target="_blank">LinkedIn</a></span>
+    </div>
+</header>
+
+<div class="nav-dots" id="navDots">
+    <div class="nav-dot active" data-section="0"></div>
+    <div class="nav-dot" data-section="1"></div>
+    <div class="nav-dot" data-section="2"></div>
+    <div class="nav-dot" data-section="3"></div>
+    <div class="nav-dot" data-section="4"></div>
+    <div class="nav-dot" data-section="5"></div>
+    <div class="nav-dot" data-section="6"></div>
+    <div class="nav-dot" data-section="7"></div>
+    <div class="nav-dot" data-section="8"></div>
+</div>
+
+<div class="checkpoint-container">
+
+    <!-- Education -->
+    <section class="checkpoint" id="section-0">
+        <h2><span class="icon">🎓</span> Education</h2>
+        <div class="item">
+            <h3>Bachelor of Fine Arts in Environmental + Interior Design</h3>
+            <div class="subtitle">Chaminade University of Honolulu – School of Humanities, Arts, and Design</div>
+            <div class="date">Expected Graduation: May 2026 | GPA: 3.92 | Honolulu, HI</div>
+        </div>
+        <div class="item">
+            <h3>Service Learning Trip (Study Abroad)</h3>
+            <div class="subtitle">University of Waikato × United Nations CIFAL Honolulu Centre</div>
+            <div class="date">March 2025 | Hamilton, New Zealand</div>
+        </div>
+        <div class="item">
+            <h3>Study Abroad – Italian Design & Culture</h3>
+            <div class="subtitle">Istituto Lorenzo de’ Medici</div>
+            <div class="date">July 2024 | Florence, Italy</div>
+        </div>
+    </section>
+
+    <!-- Media & Public Recognition -->
+    <section class="checkpoint" id="section-1">
+        <h2><span class="icon">📰</span> Media & Public Recognition</h2>
+        <div class="item">
+            <h3><a href="https://www.hawaiihomemag.com/chaminade-university-cultivates-the-next-generation-of-design-professionals/" target="_blank">Hawaii Home + Remodeling (2024)</a></h3>
+            <div class="subtitle">“Chaminade University Cultivates the Next Generation of Design Professionals”</div>
+            <p>Featured on the cover photo and quoted on design collaboration and client communication.</p>
+        </div>
+        <div class="item">
+            <h3><a href="https://issuu.com/chaminadeuniversity/docs/cuh0114_magazine_fall2024-11_final_pages/33" target="_blank">Chaminade University of Honolulu Silversword Magazine (2024)</a></h3>
+            <div class="subtitle">“Designs of a Greener World”</div>
+            <p>Full-page profile highlighting sustainability-focused design work, CIFAL Honolulu ambassadorship, and leadership in ASID and Chaminade’s Environmental + Interior Design (E+ID) program.</p>
+        </div>
+        <div class="item">
+            <h3><a href="https://chaminade.edu/iceland-beer-spa/" target="_blank">Chaminade University of Honolulu News (2024)</a></h3>
+            <div class="subtitle">“Chaminade Students Submit Final Concept to Iceland Beer Spa International Architecture Competition”</div>
+            <p>Featured with multi-paragraph quotes on concept strategy, sustainability, and collaborative design.</p>
+        </div>
+        <div class="item">
+            <h3><a href="https://chaminade.edu/students-honored-with-design-excellence-award/" target="_blank">Chaminade University of Honolulu News (2024)</a></h3>
+            <div class="subtitle">“Students Cinch Design Excellence Awards”</div>
+            <p>Featured in recognition of ASID Hawaii Design Excellence Awards.</p>
+        </div>
+        <div class="item">
+            <h3><a href="https://g70.design/2022-g70-scholarship-mentorship-awards-embrace-community/" target="_blank">G70 (2022)</a></h3>
+            <div class="subtitle">“2022 G70 Scholarship + Mentorship Awards Embrace Community”</div>
+            <p>Featured as a scholarship recipient in G70’s announcement recognizing design students.</p>
+        </div>
+    </section>
+
+    <!-- Research Experience -->
+    <section class="checkpoint" id="section-2">
+        <h2><span class="icon">🔬</span> Research Experience</h2>
+        <div class="item">
+            <h3>Experiential Honors Senior Research Project</h3>
+            <div class="subtitle">Chaminade University of Honolulu | United Nations CIFAL Honolulu Centre Ambassador</div>
+            <div class="date">October 2025 – Present | Honolulu, HI</div>
+            <ul>
+                <li>Designing a qualitative case-study for the Experiential Honors Program as a United Nations CIFAL Honolulu Centre Ambassador, examining how mentoring a PAAC Global Issues Certificate student deepened my understanding of the United Nations Sustainable Development Goals (SDGs), youth engagement, and collaborative problem solving.</li>
+                <li>Producing an annotated bibliography, literature review, and reflective methodology connecting SDGs 4, 11, and 17 to community-engaged learning.</li>
+                <li>Preparing a research poster for presentation at Na Liko Na’auao (Spring 2026), highlighting insights into mentorship, adaptive reuse concepts, and sustainable development education.</li>
+            </ul>
+        </div>
+        <div class="item">
+            <h3>Hawai’i Conservation Conference Poster Collaborator</h3>
+            <div class="date">July 2025 | Honolulu, HI</div>
+            <ul>
+                <li>Collaborated with Environmental Science & Environmental Studies BAS graduates to visualize water monitoring data collected from Maunalua Fishpond Heritage Center.</li>
+                <li>Created a line chart depicting temperature changes from 2022 to 2025 to support comparative analysis between the restored Kānewai and degraded Kalauhaʻihaʻi fishponds.</li>
+                <li>Utilized Python in Jupyter Notebook on TACC's Stampede3 supercomputer to import, filter, and merge data using Pandas; visualized long-term trends with Matplotlib.</li>
+                <li>Assisted in designing and refining the final research poster, including figure annotations, data narrative framing, and layout organization for the Hawai‘i Conservation Conference.</li>
+            </ul>
+        </div>
+        <div class="item">
+            <h3>Data Science Research Intern (NSF SPICE Program)</h3>
+            <div class="subtitle">Texas Advanced Computing Center (TACC)</div>
+            <div class="date">May 2025 – June 2025 | Honolulu, HI</div>
+            <ul>
+                <li>Designed and conducted an independent data science research project analyzing how walkability and public transit impact human wellbeing and environmental health across the five largest walkable U.S. cities, plus Honolulu for local context.</li>
+                <li>Collected and synthesized datasets in three domains (air quality, urban living, and social vulnerability) from data.gov, EPA, CDC, DC Open Data, and Kaggle.</li>
+                <li>Used Python in Jupyter Notebook on TACC’s Stampede3 supercomputer to import, clean, filter, and merge data with Pandas and GeoPandas, defining metrics for each domain while ensuring consistency across cities with sustained HPC account access beyond the internship period.</li>
+                <li>Produced normalized line charts, Seaborn heatmaps, interactive Plotly and Matplotlib visualizations, and a GeoJSON-based choropleth map to highlight spatial context, city-level differences, and composite performance scores.</li>
+                <li>Delivered a final <a href="https://drive.google.com/file/d/1C1seJySxljsK6UKCGQqt3KU_o9Row9Mp/view" target="_blank">research poster</a> and <a href="https://drive.google.com/file/d/1F_XrmNYyiNX1sy-iN6Zft_gVxu_rQtA_/view" target="_blank">oral presentation</a> showcasing analytical methods, visualizations, and policy-relevant insights for sustainable, equitable urban design.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Professional Experience -->
+    <section class="checkpoint" id="section-3">
+        <h2><span class="icon">💼</span> Professional Experience</h2>
+        <div class="item">
+            <h3>Interior Design Consultant</h3>
+            <div class="subtitle">Chaminade University of Honolulu Office of the Provost</div>
+            <div class="date">October 2025 – Present | Honolulu, HI</div>
+            <ul>
+                <li>Redesign the Provost Office waiting area and conference room using bright, warm, and natural material selections to emulate a strong Hawaiian sense of place that supports innovation and creativity in campus program development.</li>
+                <li>Deliver plans and FF&E specifications using Procreate, Revit, Canva and Adobe InDesign; coordinate with vendors, CUH facilities, and university leadership through each design stage to ensure accurate execution of the approved design.</li>
+                <li>Final project implementation will support connections for a range of stakeholders including faculty, staff, and community partners for 8-12 people at a time.</li>
+            </ul>
+        </div>
+        <div class="item">
+            <h3>Collegiate Brand Ambassador</h3>
+            <div class="subtitle">Monster Energy Company</div>
+            <div class="date">October 2025 – Present | Honolulu, HI</div>
+            <ul>
+                <li>Coordinate high-traffic sampling events that draw 80–100 students each, distributing Monster Energy products and merchandise while fostering positive, engaging interactions with students and campus organizations.</li>
+                <li>Produce monthly activity reports with photo documentation and social media content to track outreach, product sampling, and visibility metrics, generating an average of 400 impressions per post.</li>
+                <li>Manage a monthly inventory of 360 cans and conduct feedback surveys to understand student energy drink preferences and use insights to refine sampling strategies.</li>
+            </ul>
+        </div>
+        <div class="item">
+            <h3>E+ID Educational Resources & Engagement Coordinator</h3>
+            <div class="subtitle">Chaminade University of Honolulu</div>
+            <div class="date">October 2022 – Present | Honolulu, HI</div>
+            <ul>
+                <li>Manage classrooms and resource areas to ensure organized, functional, and well-equipped learning environments.</li>
+                <li>Coordinate material donations with local design firms, cataloging and managing inventory to support student project needs and strengthen community partnerships.</li>
+                <li>Represent the E+ID program at university and feeder-school events, engaging prospective students, presenting program information, and supporting outreach efforts.</li>
+            </ul>
+        </div>
+        <div class="item">
+            <h3>Interim Chapter Administrator</h3>
+            <div class="subtitle">American Society of Interior Designers (ASID), Hawai’i Chapter</div>
+            <div class="date">April 2025 – December 2025 | Honolulu, HI</div>
+            <ul>
+                <li>Served as the primary chapter contact, managing communications, database updates, and board administrative support.</li>
+                <li>Coordinated chapter activities for a 120-member organization, including website updates, monthly newsletters, events, elections, and initiatives supporting student professional development.</li>
+                <li>Implemented digital systems to streamline logistics, enhance organizational efficiency, and assist leadership transitions.</li>
+            </ul>
+        </div>
+        <div class="item">
+            <h3>Content Creator</h3>
+            <div class="subtitle">CampusReel</div>
+            <div class="date">April 2025 – June 2025 | Honolulu, HI</div>
+            <ul>
+                <li>Produced 4 student-led short-form videos showcasing authentic perspectives on academics, campus life, third spaces, and personal values to help inform prospective students exploring Chaminade University of Honolulu in their college search.</li>
+                <li>Contributed to a national platform promoting transparency, accessibility, and diversity in the college admissions process.</li>
+                <li>Supported recruitment efforts during a cycle that saw a 20% increase in enrollment for the 2026-2027 academic year, enhancing the visibility of student experiences through targeted video storytelling.</li>
+            </ul>
+        </div>
+        <div class="item">
+            <h3>Interior Design Coordinator</h3>
+            <div class="subtitle">Mānoa Heritage Center</div>
+            <div class="date">January 2025 – May 2025 | Honolulu, HI</div>
+            <ul>
+                <li>Developed a comprehensive executive office design proposal package for the Director of the Mānoa Heritage Center within the historic site of Kūaliʻi (Cooke Family House).</li>
+                <li>Integrated sustainable design strategies and locally sourced materials to create a flexible, durable multipurpose workspace that supports daily operations and accommodates the director, assistant, and meetings of 4-6 people.</li>
+                <li>Produced a complete submission package, including a Canva design overview, a Revit construction document set, and a master specification list, specification sheets, and vendor quotes compiled in Adobe InDesign.</li>
+            </ul>
+        </div>
+        <div class="item">
+            <h3>Interior Design Renderer and Consultant</h3>
+            <div class="subtitle">Sacred Hearts Academy</div>
+            <div class="date">January 2024 – December 2024 | Honolulu, HI</div>
+            <ul>
+                <li>Created interior and exterior renderings that visually captured the vision for the Early Learning Center Renovation, contributing to a successful grant acquisition of $100k with demolition in 2025 and scheduled renovation in 2026.</li>
+                <li>Conducted client interviews, space planning, and needs assessments to optimize furniture solutions for the upper and lower school faculty lounge renovations, enhancing functionality and comfort for SHA staff (lounges opened Jan. 2025).</li>
+                <li>Coordinated with vendors to ensure timely delivery and installation of furniture selections within a total budget of $31k.</li>
+            </ul>
+        </div>
+        <div class="item">
+            <h3>Interior Design Intern</h3>
+            <div class="subtitle">Group 70 International, Inc., dba G70</div>
+            <div class="date">May 2023 – March 2024 | Honolulu, HI</div>
+            <ul>
+                <li>Assisted project teams with concept design and construction document tasks on-site and in-office to support smooth project progression whilst building proficiency in Adobe Creative Suite, Revit, AutoCAD, and Bluebeam.</li>
+                <li>Organized and maintained the resource library by coordinating with flooring, furniture, and acoustics vendors for updates, new product launches, and order management.</li>
+                <li>Prepared presentation materials, redlines, and finish boards for internal reviews and client meetings, contributing to clear communication of design intent.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Additional Experience -->
+    <section class="checkpoint" id="section-4">
+        <h2><span class="icon">🛠️</span> Additional Experience</h2>
+        <div class="item">
+            <h3>Makiki District Park Attendant Services</h3>
+            <div class="subtitle">City and County of Honolulu</div>
+            <div class="date">November 2022 – December 2024 | Honolulu, HI</div>
+            <ul>
+                <li>Performed facility checks, housekeeping, and site logging to ensure a clean and safe park environment.</li>
+                <li>Assisted with class/event setup and cleanup while providing customer service and information to visitors.</li>
+            </ul>
+        </div>
+        <div class="item">
+            <h3>Makiki District Park Summer Fun Recreation Aide</h3>
+            <div class="date">May 2022 – July 2022 | Honolulu, HI</div>
+            <ul>
+                <li>Oversaw up to groups of 25 children in various activities at Makiki District Park and on excursions 6-7hrs/day, Mon-Fri.</li>
+                <li>Created weekly lesson plans, recorded statistics & evaluations, cleaned facilities, and attended daily meetings.</li>
+            </ul>
+        </div>
+        <div class="item">
+            <h3>Chiropractic Assistant</h3>
+            <div class="subtitle">Cornerstone Community Chiropractic Inc.</div>
+            <div class="date">May 2023 – June 2023 | Honolulu, HI</div>
+            <ul>
+                <li>Managed front-desk operations, including scheduling, patient communications, and documentation using Platinum Chiropractic Software, Notability, Zingit, Fortis, OneDrive, and Google Drive.</li>
+                <li>Assisted patients with inquiries on insurance, billing, and care, while maintaining a tidy, welcoming office environment and smooth workflow.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Skills & Certifications -->
+    <section class="checkpoint" id="section-5">
+        <h2><span class="icon">⚡</span> Skills & Certifications</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h4>Design & Visualization</h4>
+                <div class="skill-item">
+                    <div class="skill-name"><span>Revit</span><span>95%</span></div>
+                    <div class="skill-bar"><div class="skill-progress" style="width:95%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name"><span>SketchUp + Enscape</span><span>92%</span></div>
+                    <div class="skill-bar"><div class="skill-progress" style="width:92%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name"><span>Adobe Creative Suite</span><span>90%</span></div>
+                    <div class="skill-bar"><div class="skill-progress" style="width:90%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name"><span>Procreate + Canva</span><span>88%</span></div>
+                    <div class="skill-bar"><div class="skill-progress" style="width:88%"></div></div>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h4>Data & Technical</h4>
+                <div class="skill-item">
+                    <div class="skill-name"><span>Python (Pandas, GeoPandas, Matplotlib, Plotly)</span><span>85%</span></div>
+                    <div class="skill-bar"><div class="skill-progress" style="width:85%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name"><span>High-Performance Computing (TACC Stampede3)</span><span>80%</span></div>
+                    <div class="skill-bar"><div class="skill-progress" style="width:80%"></div></div>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h4>Core Competencies</h4>
+                <div class="skill-item">
+                    <div class="skill-name"><span>Project Management & Strategic Planning</span><span>94%</span></div>
+                    <div class="skill-bar"><div class="skill-progress" style="width:94%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name"><span>Community-Driven & Planetary Design</span><span>92%</span></div>
+                    <div class="skill-bar"><div class="skill-progress" style="width:92%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name"><span>Presentation & Social Media Writing</span><span>90%</span></div>
+                    <div class="skill-bar"><div class="skill-progress" style="width:90%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name"><span>Communication & Collaboration</span><span>96%</span></div>
+                    <div class="skill-bar"><div class="skill-progress" style="width:96%"></div></div>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h4>Certifications</h4>
+                <ul class="cert-list">
+                    <li>Forage Certificate - Social Media Simternship® (2025)</li>
+                    <li>Seal of Biliteracy in English & Mandarin Chinese (2022)</li>
+                    <li class="in-progress">UNITAR Eco-Innovation - Building Materials Supplements</li>
+                    <li class="in-progress">UNITAR Becoming a Climate Champion</li>
+                    <li class="in-progress">Google Analytics for Beginners (2025)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Honors & Awards -->
+    <section class="checkpoint" id="section-6">
+        <h2><span class="icon">🏆</span> Honors & Awards</h2>
+        <div class="awards-grid">
+            <div class="award-badge">
+                <div class="title">Regents Scholar</div>
+                <div class="desc">Merit-based academic scholarship awarded to top incoming students<br>2022 – Present</div>
+            </div>
+            <div class="award-badge">
+                <div class="title">G70 Scholarship and Mentorship Recipient</div>
+                <div class="desc">Awarded by a leading Hawai’i design firm<br>2022 – Present</div>
+            </div>
+            <div class="award-badge">
+                <div class="title">Dean’s List</div>
+                <div class="desc">Six Consecutive Terms<br>2022 – Present</div>
+            </div>
+            <div class="award-badge">
+                <div class="title">Daniel and Jeannette Eden Endowed Scholarship Recipient</div>
+                <div class="desc">2024 – 2025</div>
+            </div>
+            <div class="award-badge">
+                <div class="title">ASID Hawai’i Design Award of Excellence</div>
+                <div class="desc">Student: Commercial, Student Athlete Solidarity<br>2024</div>
+            </div>
+            <div class="award-badge">
+                <div class="title">ASID Hawai’i Design Award of Merit</div>
+                <div class="desc">Student: Commercial, Da Crater Spa’t<br>2024</div>
+            </div>
+            <div class="award-badge">
+                <div class="title">AIA Honolulu Design Awards Student Distinguished Entrant</div>
+                <div class="desc">Da Crater Spa’t<br>2024</div>
+            </div>
+            <div class="award-badge">
+                <div class="title">American Floor and Home Foundation Scholarship Recipient</div>
+                <div class="desc">2023</div>
+            </div>
+            <div class="award-badge">
+                <div class="title">Associated Chinese University Women Scholarship Recipient</div>
+                <div class="desc">2023</div>
+            </div>
+            <div class="award-badge">
+                <div class="title">Dr. Oliver M Lee Scholarship Recipient</div>
+                <div class="desc">2023</div>
+            </div>
+            <div class="award-badge">
+                <div class="title">Leslie A. Hicks Endowed Scholarship Recipient</div>
+                <div class="desc">2023</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Affiliations -->
+    <section class="checkpoint" id="section-7">
+        <h2><span class="icon">🤝</span> Professional Affiliations</h2>
+        <div class="item">
+            <h3>ASID Hawaii Chapter, Student Member</h3>
+            <div class="date">November 2025 – Present</div>
+        </div>
+        <div class="item">
+            <h3>IIDA Hawaii Pacific Chapter, Student Member</h3>
+            <div class="date">October 2022 – Present</div>
+        </div>
+        <div class="item">
+            <h3>Interior Design Professional Resource Organization</h3>
+            <div class="subtitle">President (Prev. Social Media and Events Coordinator)</div>
+            <div class="date">August 2025 – Present</div>
+        </div>
+        <div class="item">
+            <h3>ASID Hawaii Chapter, Student Representative to the Board</h3>
+            <div class="date">October 2023 – October 2025</div>
+        </div>
+    </section>
+
+    <!-- Extracurricular Activities (New Section) -->
+    <section class="checkpoint" id="section-8">
+        <h2><span class="icon">🌱</span> Extracurricular Activities</h2>
+        <ul class="extracurricular-list">
+            <li>
+                <div class="title">Experiential Honors, United Nations CIFAL Honolulu Centre Ambassador</div>
+                <div class="date">August 2022 – Present</div>
+            </li>
+            <li>
+                <div class="title">Pacific and Asian Affairs Council, Global Issues Certificate Mentor</div>
+                <div class="date">November 2025 – Present</div>
+            </li>
+            <li>
+                <div class="title">Therapeutic Horsemanship of Hawaii, Volunteer</div>
+                <div class="date">September 2025 – Present</div>
+            </li>
+            <li>
+                <div class="title">United Nations Association of Chaminade University, Member</div>
+                <div class="date">April 2025 – Present</div>
+            </li>
+            <li>
+                <div class="title">Ka Hiki Mai Scholar – Leadership Program</div>
+                <div class="date">January 2025 – May 2025</div>
+            </li>
+            <li>
+                <div class="title">Chaminade University of Honolulu Sustainability Club, Member</div>
+                <div class="date">October 2022 – December 2024</div>
+            </li>
+            <li>
+                <div class="title">‘Inana Innovators Scholar – Sustainability Entrepreneurship Program</div>
+                <div class="date">August 2023 – December 2023</div>
+            </li>
+            <li>
+                <div class="title">Infinium Interiors, Volunteer</div>
+                <div class="date">January 2023 – April 2023</div>
+            </li>
+        </ul>
+    </section>
+
+</div>
+
+<footer>
+    <div class="contact-info" style="color:white; justify-content:center; gap:25px; font-size:16px;">
+        <span>📞 (808) 492-0151</span>
+        <span>✉️ 88katherine.liu@gmail.com</span>
+        <span>💼 <a href="https://www.linkedin.com/in/88-katherine-liu/" target="_blank">LinkedIn</a></span>
+    </div>
+    <p style="margin-top:25px;">© December 23, 2025 Katherine Liu — Sustainable, human-centered design</p>
+    <p class="tagline">Open to internships and opportunities in 2026. Let's connect!</p>
+</footer>
+
+<script>
+// Navigation dots
+const dots = document.querySelectorAll('.nav-dot');
+const sections = document.querySelectorAll('.checkpoint');
+
+dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+        const idx = dot.dataset.section;
+        document.getElementById(`section-${idx}`).scrollIntoView({ behavior: 'smooth' });
+    });
+});
+
+window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+        if (window.scrollY >= sec.offsetTop - 200) current = sec.id;
+    });
+    dots.forEach(dot => {
+        dot.classList.remove('active');
+        if (dot.dataset.section === current.split('-')[1]) dot.classList.add('active');
+    });
+});
+
+// Animate skill bars on scroll
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            document.querySelectorAll('.skill-progress').forEach(bar => {
+                bar.style.width = bar.parentElement.previousElementSibling.querySelector('span:last-child').textContent;
+            });
+        }
+    });
+}, { threshold: 0.1 });
+
+observer.observe(document.querySelector('#section-5'));
+</script>
+</body>
+</html>
